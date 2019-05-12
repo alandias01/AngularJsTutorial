@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <base href="/organizingfiles/" />
+
+    <title>Flash Card prac</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>        <!--AngularJS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>  <!--AngularJS ui-router -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>           <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>      <!--jQuery UI-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>         <!--Bootstrap-->
+    <!--CSS-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">    <!--jQuery UI-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">                    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">              <!-- BootstrapOptional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">              <!--Font Awesome-->
+    
+    <script src="app.module.js"></script>    
+    <script src="app.config.js"></script>
+    <script src="app.controller.js"></script>
+
+</head>
+<body ng-app="app" ng-controller="appctrl">
+        
+    <!--routes get injected here-->
+    <div ng-view></div>
+
+    <script>
+        /*
+        var app = angular.module("app", ["ngRoute"]);
+
+        app.config(function($routeProvider, $locationProvider) {
+            $routeProvider.when('/', {
+                templateUrl: 'main.html'
+            })
+            .when('/details', {
+                templateUrl: "details.html"
+            });
+
+            // use the HTML5 History API
+            $locationProvider.html5Mode(true);
+
+            
+        });
+        
+        app.controller("appctrl", function ($scope) {
+            $scope.test = "hello";
+        });
+        */
+        
+    </script>
+
+</body>
+</html>

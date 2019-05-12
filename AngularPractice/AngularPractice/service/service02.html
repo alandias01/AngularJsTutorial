@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <title></title>	    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <style></style>
+        
+</head>
+<!-- create 3 modules -->
+
+<body ng-app="app">
+
+    <div ng-controller="app1ctrl">
+        <button ng-click="changeVal()">changeVal()</button>
+        <br />
+        {{val1}}
+
+    </div>
+
+    <div ng-controller="app2ctrl" >
+        {{val2}}
+    </div>
+    
+
+    <script>
+        angular.module('app', ['app1','app2']);
+
+        angular.module('app1', ['rogue']);
+        angular.module('app2', ['rogue']);
+        angular.module('rogue', []);
+
+        angular.module('app1').controller('app1ctrl', function ($scope, rogueFactory) {
+            
+            rogueFactory.addMyEvent(function () {
+                $scope.val1 = rogueFactory.getData();
+            });
+
+            $scope.val1 = rogueFactory.getData();
+            
+            $scope.changeVal = function () {
+                rogueFactory.setData("changedData");                
+            }
+            
+        });
+
+        angular.module('app2').controller('app2ctrl', function ($scope, rogueFactory) {
+            rogueFactory.addMyEvent(function () {
+                $scope.val2 = rogueFactory.getData();
+            });
+            $scope.val2 = rogueFactory.getData();
+        });
+        
+        angular.module('rogue').factory('rogueFactory', function () {
+
+            var obj = {};
+            var val = "Internal Data";
+
+            obj.getData = function () {
+                return val;
+            }
+
+            obj.setData = function (input) {
+                val = input;
+                obj.raiseMyEvent();
+            }
+
+            //If you only attach 1 function
+            //obj.myEvent = function () { };  //Dont need this. Gets dynamically created.  Good for readability
+            //obj.addMyEvent = function (cb) { obj.myEvent=cb;  };
+            //obj.raiseMyEvent = function () { obj.myEvent(); };
+
+            //If you have more than 1 function
+            obj.myEvent = [];   //You cant leave this out.  Doesn't get dynamically created
+            obj.addMyEvent = function (cb) { obj.myEvent.push(cb); };
+            obj.raiseMyEvent = function () {
+                angular.forEach(obj.myEvent, function (callback) {
+                    callback();
+                });
+            }
+
+            return obj;
+        });
+
+    </script>
+        
+    
+</body>
+</html>

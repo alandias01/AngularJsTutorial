@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My site</title>
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    
+    <style>
+        #div-table{width:50%;}
+        thead{  color:white; background-color:darkgray;}
+    </style>
+
+</head>
+<body>
+    <div ng-app="app" ng-controller="appctrl">
+        
+        <br />
+        <br />
+        
+        <div id="div-table">
+            <table class="table table-striped table-hover">
+                <thead >
+                    <tr>
+                        <th>Measurement year</th>
+                        <th>Payer</th>
+                        <th>Plan Name</th>
+                        <th>Domain</th>
+                        <th>Sub Domain</th>
+                        <th>measure description</th>
+                        <th ng-click="orderByMe('measure')">Measure</th>
+                        <th>Method of data collection</th>                        
+                        <th>Eligible population</th>
+                        <th>Denominator</th>
+                        <th>Numerator</th>
+                        <th>Rate</th>
+
+                        
+                    </tr>
+                </thead>
+                <tr ng-repeat="x in hc | orderBy:myOrderBy">
+                    <td>{{x.measurement_year}}</td>
+                    <td>{{x.payer}}</td>
+                    <td>{{x.plan_name}}</td>
+                    <td>{{x.domain}}</td>
+                    <td>{{x.sub_domain}}</td>
+                    <td>{{x.measure_description}}</td>
+                    <td>{{x.measure}}</td>
+                    <td>{{x.method_of_data_collection}}</td>                    
+                    <td>{{x.eligible_population}}</td>
+                    <td>{{x.denominator}}</td>
+                    <td>{{x.numerator}}</td>
+                    <td>{{x.rate}}</td>
+
+                    
+                </tr>
+            </table>
+        </div>
+        
+
+    </div>
+    
+    <script>
+        angular.module("app", []).controller("appctrl", function ($scope, $http) {
+            $scope.myname = "alan";
+
+            //$http.get("https://health.data.ny.gov/resource/6tyy-ar6y.json").then(function (response) { $scope.hc = response.data; });
+            $http.get("https://health.data.ny.gov/resource/edwk-kh6k.json").then(function (response) { $scope.hc = response.data; });
+            
+            $scope.orderByMe = function (x) { $scope.myOrderBy = x; };
+        });
+
+    </script>    
+</body>
+</html>

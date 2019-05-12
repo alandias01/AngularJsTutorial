@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Services</title>
+	    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>        <!--AngularJS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>  <!--AngularJS ui-router -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>           <!--jQuery-->           
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>      <!--jQuery UI-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>         <!--Bootstrap-->
+    
+    <!--CSS-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">    <!--jQuery UI-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">                    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">              <!-- BootstrapOptional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">              <!--Font Awesome-->
+        
+</head>
+<body ng-app="app" ng-controller="appctrl">
+    
+
+    <input type="text" ng-model="textdata" ng-change="onchg(textdata)" />
+    <br />
+    <div>{{textdata2}}</div>
+    <div>{{textdata3}}</div>
+    
+	<script>
+        
+        angular.module("app", []).controller("appctrl", function ($scope, $http, alanservice) {
+            
+            $scope.onchg = function (input) {
+                
+                $scope.textdata2 = alanservice.makeupper(input);
+                $scope.textdata3 = alanservice.addletter(input);
+            };
+                        
+        });
+
+        angular.module("app").factory("alanservice", function () {
+            return {
+                makeupper: function (input) { return angular.uppercase(input); },
+                addletter: function (input) { return angular.uppercase(input + "z"); }
+            }
+
+        });
+	
+	</script>
+		
+		
+</body>
+</html>

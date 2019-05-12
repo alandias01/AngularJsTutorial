@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <title></title>
+	    
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>    
+    
+   
+</head>
+<body ng-app="phonecatApp" >
+    
+    <div ng-controller="PhoneListController">
+        <ul>
+            <li ng-repeat="phone in phones">
+                <span>{{phone.name}}</span>
+                <p>{{phone.snippet}}</p>
+            </li>
+        </ul>
+    </div>    
+        
+	<script>
+        //app.js
+        var phonecatApp = angular.module('phonecatApp', []);
+                
+        phonecatApp.controller('PhoneListController', function PhoneListController($scope) {
+            $scope.phones = [
+              {
+                  name: 'Nexus S',
+                  snippet: 'Fast just got faster with Nexus S.'
+              }, {
+                  name: 'Motorola XOOM™ with Wi-Fi',
+                  snippet: 'The Next, Next Generation tablet.'
+              }, {
+                  name: 'MOTOROLA XOOM™',
+                  snippet: 'The Next, Next Generation tablet.'
+              }
+            ];
+        });
+	
+	</script>
+		
+		
+</body>
+</html>
